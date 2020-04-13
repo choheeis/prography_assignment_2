@@ -1,7 +1,8 @@
 package com.example.prography_assignment_2
 
+import com.google.gson.annotations.SerializedName
+
 data class CitiesData (
-    val no: Int,
-    val city: String,
-    val url: String
+    @SerializedName("cities")
+    val cities: List<CitiesInfoData>
 )

@@ -10,7 +10,7 @@ class CItiesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val tvCity = itemView.findViewById<TextView>(R.id.tv_city)
     val tvUrl = itemView.findViewById<TextView>(R.id.tv_url)
 
-    fun bind(data: CitiesData){
+    fun bind(data: CitiesInfoData){
         tvNo.text = data.no.toString()
         tvCity.text = data.city
         tvUrl.text = "url : " + data.url

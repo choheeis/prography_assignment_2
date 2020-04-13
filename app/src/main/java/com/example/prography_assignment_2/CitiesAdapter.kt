@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CitiesAdapter(private val context: Context) : RecyclerView.Adapter<CItiesViewHolder>() {
 
-    var data = listOf<CitiesData>()
+    var data = listOf<CitiesInfoData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CItiesViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.item_cities, parent, false)

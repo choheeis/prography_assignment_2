@@ -2,8 +2,12 @@ package com.example.prography_assignment_2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,18 +27,22 @@ class MainActivity : AppCompatActivity() {
         rvMain.adapter = rvAdapter
         rvMain.layoutManager = LinearLayoutManager(this)
 
-        rvAdapter.data = listOf(
-            CitiesData(
-                no = 1,
-                city = "Seoul",
-                url = "http~~~"
-            ),
-            CitiesData(
-                no = 2,
-                city = "Seoul2",
-                url = "http~~~2"
-            )
+        val call: Call<CitiesData> = CitiesObject.service.getCities()
+        call.enqueue(
+            object : Callback<CitiesData>{
+                override fun onFailure(call: Call<CitiesData>, t: Throwable) {
+                    Log.d("chohee", t.toString())
+                }
+
+                override fun onResponse(
+                    call: Call<CitiesData>,
+                    response: Response<CitiesData>
+                ) {
+                    rvAdapter.data = response.body()!!.cities
+                    rvAdapter.notifyDataSetChanged()
+                }
+            }
         )
-        rvAdapter.notifyDataSetChanged()
+
     }
 }
