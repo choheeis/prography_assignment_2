@@ -1,10 +1,16 @@
-package com.example.prography_assignment_2
+package com.example.prography_assignment_2.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prography_assignment_2.R
+import com.example.prography_assignment_2.retrofit.CitiesBuilder
+import com.example.prography_assignment_2.retrofit.CitiesData
+import com.example.prography_assignment_2.room.RoomAccess
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initRecyclerView()
+        getBookmark()
     }
 
     fun initRecyclerView(){
@@ -27,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         rvMain.adapter = rvAdapter
         rvMain.layoutManager = LinearLayoutManager(this)
 
-        val call: Call<CitiesData> = CitiesObject.service.getCities()
+        val call: Call<CitiesData> = CitiesBuilder.service.getCities()
         call.enqueue(
             object : Callback<CitiesData>{
                 override fun onFailure(call: Call<CitiesData>, t: Throwable) {
@@ -43,6 +50,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
+    }
 
+    fun getBookmark(){
+        tv_db.setOnClickListener {
+            val intent = Intent(this, BookmarkActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    override fun finish() {
+        super.finish()
+        RoomAccess(this).deleteAllBookMark()
     }
 }

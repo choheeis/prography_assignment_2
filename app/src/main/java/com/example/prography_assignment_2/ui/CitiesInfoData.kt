@@ -1,4 +1,4 @@
-package com.example.prography_assignment_2
+package com.example.prography_assignment_2.ui
 
 import com.google.gson.annotations.SerializedName
 

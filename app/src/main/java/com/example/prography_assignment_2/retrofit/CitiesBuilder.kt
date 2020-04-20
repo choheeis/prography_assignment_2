@@ -1,9 +1,9 @@
-package com.example.prography_assignment_2
+package com.example.prography_assignment_2.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object CitiesObject {
+object CitiesBuilder {
 
     /** retrofit Object */
     private const val BASE_URL = "https://progserver.herokuapp.com"
@@ -12,5 +12,8 @@ object CitiesObject {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val service: CitiesInterface = retrofit.create(CitiesInterface::class.java)
+    val service: CitiesInterface = retrofit.create(
+        CitiesInterface::class.java)
 }
+
+

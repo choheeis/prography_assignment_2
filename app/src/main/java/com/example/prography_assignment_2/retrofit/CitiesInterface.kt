@@ -1,4 +1,4 @@
-package com.example.prography_assignment_2
+package com.example.prography_assignment_2.retrofit
 
 import retrofit2.Call
 import retrofit2.http.GET
